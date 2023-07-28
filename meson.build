@@ -23,7 +23,7 @@ subdir('src')
 # This links all the static libs into the main source file to form a binary
 
 sample_cpp_project_bin_deps = [
-  meson.get_compiler('cpp').find_library('fizz', required : true, dirs : library_path)
+
 ]
 
 sample_cpp_project_bin_dep_libs = [
@@ -32,20 +32,20 @@ sample_cpp_project_bin_dep_libs = [
   baz_lib,
 ]
 
-sample_cpp_project_bin = executable('sample_cpp_project_bin', 
-  main_source, 
-  include_directories : inc, 
+sample_cpp_project_bin = executable('sample_cpp_project_bin',
+  main_source,
+  include_directories : inc,
   dependencies : sample_cpp_project_bin_deps,
   link_with : sample_cpp_project_bin_dep_libs)
 
-gtest = subproject('gtest')
-benchmark = subproject('benchmark')
+# gtest = subproject('gtest')
+# benchmark = subproject('benchmark')
 
 if get_option('enable-tests')
-  subdir('tests')
+  # subdir('tests')
 endif
 if get_option('enable-benchmarks')
-  subdir('benchmarks')
+  # subdir('benchmarks')
 endif
 
 subdir('docs')
@@ -57,7 +57,7 @@ configure_file(input : '.clang-format',
 run_target('format',
   command : ['clang-format','-i','-style=file',project_sources,project_test_sources,project_benchmark_sources,project_header_files])
 
-# This regex excludes any sources from the third_party, tests, benchmarks 
+# This regex excludes any sources from the third_party, tests, benchmarks
 # and gtest related files.
 regex = '^((?!(third_party|tests|benchmarks|gtest)).)*$'
 # This adds clang tidy support

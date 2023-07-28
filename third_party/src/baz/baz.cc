@@ -1,4 +1,3 @@
-#include "baz/baz.h"
 #include <iostream>
 #include <config.h>
 
